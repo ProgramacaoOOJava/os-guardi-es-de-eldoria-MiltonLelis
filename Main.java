@@ -1,26 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     // Método principal, ponto de entrada da aplicação
     public static void main(String[] args) {
 
-        // Cria o primeiro personagem com seus atributos iniciais
-        Personagem heroi1 = new Personagem("Arthus", "Guerreiro", 1, 100, 10.5);
+        // Cria instâncias de Guerreiro e Mago
+        Guerreiro arthus = new Guerreiro("Arthus", 5, 150, 12.0, 8.0);
+        Mago morgana = new Mago("Morgana", 7, 100, 15.0, 10.0);
         
-        // Altera o diretamente o atributos de heroi1
-        heroi1.nivel = 2;
-        heroi1.pontosDeVida = 95;
+        // Exibe status
+        arthus.exibirStatus();
+        morgana.exibirStatus();
 
-        // Cria o segundo personagem com seus atributos iniciais
-        Personagem heroi2 = new Personagem("Artermis", "Arqueira", 1, 80, 12.2);
+        // Usa habilidades especiais
+        arthus.usarHabilidadeEspecial();
+        morgana.usarHabilidadeEspecial();
 
-        // Altera o diretamente atributos de heroi2
-        heroi1.nivel = 2;
-        heroi2.pontosDeVida = 85;
+        System.out.println("\n--- Demonstração de Polimorfismo ---");
+        List<Personagem> herois = new ArrayList<>();
+        herois.add(arthus);
+        herois.add(morgana);
+        herois.add(new Guerreiro("Borin", 3, 120, 10.0, 6.0));
 
-        // Exibe os dados do primeiro personagem no console
-        heroi1.exibirStatus();
-
-        // Exibe os dados do segundo personagem no console
-        heroi2.exibirStatus();
+        for (Personagem p : herois) {
+            p.exibirStatus();
+            p.usarHabilidadeEspecial();
+            System.out.println("------------------------------------");
+        }
     }
 }
